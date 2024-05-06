@@ -1,0 +1,50 @@
+DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security System</title>
+<script>
+function checkSecurity() {
+    var code1 = document.getElementById("code1").value;
+    var code2 = document.getElementById("code2").value;
+    var code3 = document.getElementById("code3").value;
+    
+    // Verificando a primeira porta
+    if (code1 % 2 === 0) {
+        // Verificando a segunda porta
+        if (code2 === code2.split('').sort().join('')) {
+            // Verificando a terceira porta
+            var countDigits = code3.replace(/[^0-9]/g,"").length;
+            var countLetters = code3.replace(/[^a-zA-Z]/g,"").length;
+            if (code3.length === 6 && countDigits >= 2 && countLetters >= 2) {
+                alert("Acesso concedido! Bem-vindo à instalação secreta.");
+            } else {
+                alert("Código incorreto para a terceira porta. Por favor, verifique as instruções e tente novamente.");
+            }
+        } else {
+            alert("Código incorreto para a segunda porta. Por favor, verifique as instruções e tente novamente.");
+        }
+    } else {
+        alert("Código incorreto para a primeira porta. Por favor, verifique as instruções e tente novamente.");
+    }
+}
+</script>
+</head>
+<body>
+<h1>Sistema de Segurança</h1>
+<p>Por favor, insira os códigos corretos para abrir as três portas:</p>
+<form>
+    <label for="code1">Código da primeira porta (número par de 4 dígitos):</label><br>
+    <input type="number" id="code1" pattern="[0-9]{4}" required><br><br>
+    
+    <label for="code2">Código da segunda porta (sequência alfabética):</label><br>
+    <input type="text" id="code2" pattern="[a-zA-Z]+" required><br><br>
+    
+    <label for="code3">Código da terceira porta (código alfanumérico de 6 caracteres, com pelo menos 2 dígitos e 2 letras):</label><br>
+    <input type="text" id="code3" pattern="[a-zA-Z0-9]{6}" required><br><br>
+    
+    <button type="button" onclick="checkSecurity()">Verificar Segurança</button>
+</form>
+</body>
+</html>
